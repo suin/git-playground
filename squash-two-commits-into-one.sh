@@ -58,17 +58,8 @@ STEP "コミットログは1つ目のコミットだけ残った状態です" &&
 	RUN git log --oneline --graph --all
 }
 
-STEP "この状態で--fixup @をつけて、もう一度コミットします" && {
-	RUN git commit --fixup @
-}
-
-STEP "1つ目のコミットと、'fixup!'がついたコミット2つがコミットログに現れます" && {
-	RUN git log --oneline --graph --all
-}
-
-STEP "最後にgit rebase -iで1つ目のコミットとfixupのコミットをひとつにまとめます" && {
-	read -p "$(tput setaf 1)ENTERを押すとエディタが立ち上がります。何も変更せず保存して閉じて下さい。$(tput sgr0)"
-	RUN git rebase -i --autosquash @~2
+STEP "この状態で--ammendをつけて、もう一度コミットします" && {
+	RUN git commit --amend --no-edit
 }
 
 STEP "コミットログは1つ目のコミットだけ残った状態になり、これでコミットログの完成です" && {
