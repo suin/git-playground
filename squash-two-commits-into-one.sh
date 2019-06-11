@@ -43,6 +43,7 @@ STEP "3つ目のコミットを追加します" && {
 
 STEP "現状のコミットツリーを確認します" && {
 	RUN git log --oneline --graph --all
+	RUN git blame ./file
 }
 
 STEP "2つ目のコミットと3つ目のコミットを一旦取り消します" && {
@@ -64,4 +65,5 @@ STEP "この状態で--ammendをつけて、もう一度コミットします" &
 
 STEP "コミットログは1つ目のコミットだけ残った状態になり、これでコミットログの完成です" && {
 	RUN git log --oneline --graph --all
+	RUN git blame ./file
 }
